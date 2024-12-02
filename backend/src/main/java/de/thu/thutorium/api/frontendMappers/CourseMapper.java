@@ -22,9 +22,11 @@ import java.util.List;
 public interface CourseMapper {
 
   // For displaying/updating : maps fields between Course and Course DTO
-  @Mapping(source = "tutor", target = "tutor")
-  @Mapping(source = "ratings", target = "ratings")
-  @Mapping(source = "category", target = "categoryId")
+//  @Mapping(source = "tutor", target = "tutor")
+//  @Mapping(source = "ratings", target = "ratings")
+//  @Mapping(source = "category", target = "categoryId")
+
+  // uncomment above as you introduce it to DTO
   CourseDTO toDTO(Course course);
 
   //Used for List Mappings

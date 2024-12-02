@@ -80,6 +80,6 @@ public class Meeting {
   @Column(name = "meeting_link", columnDefinition = "TEXT")
   private String meetingLink;
 
-  @OneToMany(mappedBy = "meeting", cascade = CascadeType.ALL)
-  private List<User> meetingParticipants;
+//  @OneToMany(mappedBy = "meeting", cascade = CascadeType.ALL)
+//  private List<User> meetingParticipants;
 }

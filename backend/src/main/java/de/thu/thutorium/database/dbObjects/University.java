@@ -25,14 +25,14 @@ public class University {
    */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "university_name")
+  @Column(name = "university_id")
   private Integer universityId;
 
   /**
    * The name of the university. This field is required and has a maximum length of 255 characters.
    */
-  @Column(name = "university_name", nullable = false, length = 255)
-  private String name;
+  @Column(name = "university_name")
+  private String UniName;
 
   /**
    * The address of the university. This establishes a many-to-one relationship with the {@code

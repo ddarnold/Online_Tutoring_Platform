@@ -15,48 +15,45 @@ import java.util.List;
 @Service
 public class CourseServiceImpl implements CourseService {
 
-    @Autowired
-    private CourseRepository courseRepository;
+  @Autowired private CourseRepository courseRepository;
 
-    @Autowired
-    private CourseMapper courseMapper;
+  @Autowired private CourseMapper courseMapper;
 
-    @Override
-    public CourseDTO findCourseById(Long id) {
-        Course course = courseRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Course not found with ID: " + id));
-        return courseMapper.toDTO(course);
-    }
+  @Override
+  public CourseDTO findCourseById(Long id) {
+    Course course =
+        courseRepository
+            .findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Course not found with ID: " + id));
+    return courseMapper.toDTO(course);
+  }
 
-    @Override
-    public List<CourseDTO> findCoursesByTutorName(String firstName, String lastName) {
-        List<Course> courses = courseRepository.findByTutorFirstNameAndLastName(firstName, lastName);
-        return courseMapper.toDTOList(courses);
-    }
+  @Override
+  public List<CourseDTO> findCoursesByTutorName(String firstName, String lastName) {
+    List<Course> courses = courseRepository.findByTutorFirstNameAndLastName(firstName, lastName);
+    return courseMapper.toDTOList(courses);
+  }
 
-    @Override
-    public List<CourseDTO> findCoursesByFullTutorName(String tutorName) {
-        List<Course> courses = courseRepository.findByTutorFullName(tutorName);
-        return courseMapper.toDTOList(courses);
-    }
+  @Override
+  public List<CourseDTO> findCoursesByFullTutorName(String tutorName) {
+    List<Course> courses = courseRepository.findByTutorFullName(tutorName);
+    return courseMapper.toDTOList(courses);
+  }
 
-    @Override
-    public List<CourseDTO> findCoursesByName(String name) {
-        List<Course> courses = courseRepository.findCourseByName(name);
-        return courseMapper.toDTOList(courses);
-    }
+  @Override
+  public List<CourseDTO> findCoursesByName(String name) {
+    List<Course> courses = courseRepository.findCourseByName(name);
+    return courseMapper.toDTOList(courses);
+  }
 
-    @Override
-    public List<CourseDTO> getCoursesByCategory(String categoryName) {
-        List<Course> courses = courseRepository.findCoursesByCategoryName(categoryName);
-        return courses.stream()
-                .map(courseMapper::toDTO)
-                .toList();
-    }
+  @Override
+  public List<CourseDTO> getCoursesByCategory(String categoryName) {
+    List<Course> courses = courseRepository.findCoursesByCategoryName(categoryName);
+    return courses.stream().map(courseMapper::toDTO).toList();
+  }
 
-    @Override
-    public Long getTotalCountOfCourses() {
-        return courseRepository.countAllCourses();
-    }
+  @Override
+  public Long getTotalCountOfCourses() {
+    return courseRepository.countAllCourses();
+  }
 }
-
