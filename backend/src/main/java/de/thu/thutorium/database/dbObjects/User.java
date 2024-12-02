@@ -86,4 +86,7 @@ public class User {
   /** A long description of the tutor. This field is optional and can be null. */
   @Column(name = "tutor_description", length = 1500)
   private String tutor_description;
+
+  @ManyToMany(mappedBy = "meetingParticipants")
+  private List<Meeting> meetings;
 }

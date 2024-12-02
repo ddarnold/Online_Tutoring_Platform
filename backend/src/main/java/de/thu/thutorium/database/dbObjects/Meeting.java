@@ -80,6 +80,16 @@ public class Meeting {
   @Column(name = "meeting_link", columnDefinition = "TEXT")
   private String meetingLink;
 
-//  @OneToMany(mappedBy = "meeting", cascade = CascadeType.ALL)
-//  private List<User> meetingParticipants;
+  /**
+   * Why Separate table ? because relational databases do not directly support many-to-many associations
+   * Without a join table, you would have to:
+   *    Either store multiple user_ids in a column of the Meeting table.
+   *    Or store multiple meeting_ids in a column of the User table.
+   */
+  @ManyToMany
+  @JoinTable(
+      name = "meeting_participants",
+      joinColumns = @JoinColumn(name = "meeting_id"),
+      inverseJoinColumns = @JoinColumn(name = "user_id"))
+  private List<User> meetingParticipants;
 }
