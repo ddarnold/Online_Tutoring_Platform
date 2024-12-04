@@ -42,7 +42,7 @@ public class AddressDBO {
   private Long addressId;
 
   /** The campus name for the university. */
-  @Column(name="campus_name", length= 255)
+  @Column(name = "campus_name", length = 255)
   private String campusName;
 
   /** The house number for the address. This field is required and cannot be null. */
@@ -67,7 +67,8 @@ public class AddressDBO {
 
   /**
    * The meeting associated with this address.
-   * <p> Defines a bidirectional one-to-one relationship with {@link MeetingDBO}.
+   *
+   * <p>Defines a bidirectional one-to-one relationship with {@link MeetingDBO}.
    */
   @OneToOne(mappedBy = "address")
   private MeetingDBO meeting;

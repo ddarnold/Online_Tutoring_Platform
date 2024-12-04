@@ -11,10 +11,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-
 /**
  * Represents a meeting entity in the system, which includes details about a particular meeting such
  * as its date, type, status, related course, and more.
+ *
  * <p>This entity is mapped to the "meeting" table in the database. Each meeting has a unique ID,
  * and is associated with a course and an address. The meeting also includes fields for date, type,
  * status, room number, duration of the meeting, and a link to the meeting.
@@ -33,9 +33,10 @@ public class MeetingDBO {
 
   /**
    * The course to which this meeting is related. The association is managed as a many-to-one
-   * relationship with {@link CourseDBO}. The counterpart is defined as a List<MeetingDBO> called 'meetings' in {@link CourseDBO}
+   * relationship with {@link CourseDBO}. The counterpart is defined as a List<MeetingDBO> called
+   * 'meetings' in {@link CourseDBO}
    */
-  @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+  @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
   @JoinColumn(name = "course_id")
   private CourseDBO course;
 
@@ -49,13 +50,12 @@ public class MeetingDBO {
 
   /** The duration of the meeting in minutes. This field cannot be null. */
   @Column(name = "duration_minutes", nullable = false)
-  private Integer duration=90;
+  private Integer duration = 90;
 
   /**
-   * The type of the meeting as enumerated by the {@link MeetingType}. Multiple values of meeting types can be assigned
-   * to the meetings.
-   * Note: This implementation is an alternate easy implementation instead of resolving the many-to-many relationships
-   * between meetings and types
+   * The type of the meeting as enumerated by the {@link MeetingType}. Multiple values of meeting
+   * types can be assigned to the meetings. Note: This implementation is an alternate easy
+   * implementation instead of resolving the many-to-many relationships between meetings and types
    */
   @ElementCollection(targetClass = MeetingType.class)
   @Enumerated(EnumType.STRING)
@@ -85,8 +85,9 @@ public class MeetingDBO {
   @Column(name = "meeting_link", columnDefinition = "TEXT")
   private String meetingLink;
 
-  /** The address where the meeting is being held. This is managed as a bidirectional one-to-one relationship.
-   * The counterpart is denoted by a MeetingDBO meeting in {@link AddressDBO}.
+  /**
+   * The address where the meeting is being held. This is managed as a bidirectional one-to-one
+   * relationship. The counterpart is denoted by a MeetingDBO meeting in {@link AddressDBO}.
    */
   @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
   @JoinColumn(name = "address_id", unique = true)
@@ -94,10 +95,11 @@ public class MeetingDBO {
 
   /**
    * Participants of this meeting.
-   * <p>
-   * Defines a many-to-many relationship with {@link UserDBO}, the participants in the meetings.
+   *
+   * <p>Defines a many-to-many relationship with {@link UserDBO}, the participants in the meetings.
    */
-  @ManyToMany(mappedBy = "meetings",
-          cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+  @ManyToMany(
+      mappedBy = "meetings",
+      cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
   private Set<UserDBO> participants;
 }

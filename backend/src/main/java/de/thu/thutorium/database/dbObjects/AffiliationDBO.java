@@ -40,8 +40,8 @@ public class AffiliationDBO {
 
   /**
    * The university associated with the affiliation. This is a many-to-one relationship with the
-   * {@code University} entity. The counterpart is denoted by a List<AffiliationDBO> called 'affiliations'
-   * in {@code University}
+   * {@code University} entity. The counterpart is denoted by a List<AffiliationDBO> called
+   * 'affiliations' in {@code University}
    */
   @ManyToOne
   @JoinColumn(name = "university_id")
@@ -49,9 +49,11 @@ public class AffiliationDBO {
 
   /**
    * Users affiliated with this affiliation.
+   *
    * <p>Defines a one-to-many relationship with {@link UserDBO}.
    */
-  @OneToMany(mappedBy = "affiliation", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+  @OneToMany(
+      mappedBy = "affiliation",
+      cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
   private List<UserDBO> affiliatedUsers;
 }
-

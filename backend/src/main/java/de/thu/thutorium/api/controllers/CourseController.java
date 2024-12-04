@@ -41,7 +41,7 @@ public class CourseController {
 
     // If no parameters are provided, return an empty list
     return List.of();
-  } //works
+  } // works
 
   /**
    * Retrieves a list of courses based on a partial name match.
@@ -65,7 +65,7 @@ public class CourseController {
   @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
   public CourseDTO getCourseById(@RequestParam Long id) {
     return courseService.findCourseById(id);
-  }// works
+  } // works
 
   /**
    * Retrieves a list of courses based on the specified category name. This endpoint is cross-origin

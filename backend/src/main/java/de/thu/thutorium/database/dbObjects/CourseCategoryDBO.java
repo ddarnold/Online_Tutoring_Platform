@@ -6,11 +6,13 @@ import lombok.*;
 import java.util.Set;
 
 /**
- * Represents a course category entity within the system. This entity is mapped to the {@code category}
- * table in the database.
- * <p>The {@link CourseCategoryDBO} class defines a category, which is a way to organize and classify courses
- * within the system. Each category has a unique name that must be specified when creating a new
- * category.
+ * Represents a course category entity within the system. This entity is mapped to the {@code
+ * category} table in the database.
+ *
+ * <p>The {@link CourseCategoryDBO} class defines a category, which is a way to organize and
+ * classify courses within the system. Each category has a unique name that must be specified when
+ * creating a new category.
+ *
  * <p>Lombok annotations are used to automatically generate boilerplate code like getters, setters,
  * and constructors.
  *
@@ -41,9 +43,10 @@ public class CourseCategoryDBO {
 
   /**
    * Courses associated with this category.
-   * <p> Defines a many-to-many relationship with {@link CourseDBO}.
-   * The cascade types {@code PERSIST}, {@code MERGE}, and {@code REFRESH} ensure that these operations
-   * are propagated to the associated courses.
+   *
+   * <p>Defines a many-to-many relationship with {@link CourseDBO}. The cascade types {@code
+   * PERSIST}, {@code MERGE}, and {@code REFRESH} ensure that these operations are propagated to the
+   * associated courses.
    */
   @OneToMany(mappedBy = "category")
   private Set<CourseDBO> courses;

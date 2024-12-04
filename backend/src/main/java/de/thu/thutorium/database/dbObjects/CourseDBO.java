@@ -10,9 +10,12 @@ import lombok.*;
 
 /**
  * Represents a course entity. This entity is mapped to the {@code course} table in the database.
- * <p> It includes information such as the course name, description, start date, end
- * date, etc.
- * <p> Lombok annotations are used to automatically generate boilerplate code like getters, setters, and constructors.
+ *
+ * <p>It includes information such as the course name, description, start date, end date, etc.
+ *
+ * <p>Lombok annotations are used to automatically generate boilerplate code like getters, setters,
+ * and constructors.
+ *
  * <p>
  */
 @Entity
@@ -33,11 +36,15 @@ public class CourseDBO {
 
   /**
    * Participants of this course.
-   * <p>Defines a many-to-many relationship with {@link UserDBO} using the join table
-   * "user_course" denoting the courses and the users who enrol in them. The cascade types {@code PERSIST},
-   * {@code MERGE}, and {@code REFRESH} ensure that these operations are propagated to the associated participants.
+   *
+   * <p>Defines a many-to-many relationship with {@link UserDBO} using the join table "user_course"
+   * denoting the courses and the users who enrol in them. The cascade types {@code PERSIST}, {@code
+   * MERGE}, and {@code REFRESH} ensure that these operations are propagated to the associated
+   * participants.
    */
-  @ManyToMany(mappedBy = "courses", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+  @ManyToMany(
+      mappedBy = "courses",
+      cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
   private Set<UserDBO> participants;
 
   /** The name of the course. This field is mandatory and cannot be null. */
@@ -46,14 +53,17 @@ public class CourseDBO {
 
   /**
    * Categories associated with this course.
-   * <p>Defines a many-to-many relationship with {@link CourseCategoryDBO} using the
-   * join table "courses_categories". The cascade types {@code PERSIST}, {@code MERGE}, and {@code REFRESH} ensure
-   * that these operations are propagated to the associated categories. The counterpart is denoted by a Set<CourseDBO> #
-   * called 'courses' in {@link CourseCategoryDBO}.
+   *
+   * <p>Defines a many-to-many relationship with {@link CourseCategoryDBO} using the join table
+   * "courses_categories". The cascade types {@code PERSIST}, {@code MERGE}, and {@code REFRESH}
+   * ensure that these operations are propagated to the associated categories. The counterpart is
+   * denoted by a Set<CourseDBO> # called 'courses' in {@link CourseCategoryDBO}.
    */
   @ManyToOne
   @JoinColumn(name = "course_category_id", nullable = false)
-  private CourseCategoryDBO category;;
+  private CourseCategoryDBO category;
+
+  ;
 
   /**
    * A short description of the course (1-2 sentences). This field is mandatory and cannot be null.
@@ -79,30 +89,31 @@ public class CourseDBO {
   @Column(name = "end_date")
   private LocalDate endDate;
 
-
   /**
    * Ratings received by a course from students.
-   * <p> Defines a one-to-many relationship with {@link RatingCourseDBO}.
-   * The cascade type {@code ALL} ensures that all operations are propagated to the associated ratings.
-   * The {@code orphanRemoval} attribute ensures that ratings are removed if they are no longer associated with the tutor.
+   *
+   * <p>Defines a one-to-many relationship with {@link RatingCourseDBO}. The cascade type {@code
+   * ALL} ensures that all operations are propagated to the associated ratings. The {@code
+   * orphanRemoval} attribute ensures that ratings are removed if they are no longer associated with
+   * the tutor.
    */
   @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<RatingCourseDBO> receivedCourseRatings;
 
   /**
    * Meetings received for a course.
-   * <p> Defines a one-to-many relationship with {@link MeetingDBO}.
-   * The {@code orphanRemoval} attribute ensures that meetings are removed if they are no longer associated with
-   * the course.
+   *
+   * <p>Defines a one-to-many relationship with {@link MeetingDBO}. The {@code orphanRemoval}
+   * attribute ensures that meetings are removed if they are no longer associated with the course.
    */
   @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<MeetingDBO> meetings;
 
   /**
    * Progress recorded for a course.
-   * <p> Defines a one-to-many relationship with {@link ProgressDBO}.
-   * The {@code orphanRemoval} attribute ensures that progress is removed if they are no longer associated with
-   * the course.
+   *
+   * <p>Defines a one-to-many relationship with {@link ProgressDBO}. The {@code orphanRemoval}
+   * attribute ensures that progress is removed if they are no longer associated with the course.
    */
   @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<ProgressDBO> progress;
