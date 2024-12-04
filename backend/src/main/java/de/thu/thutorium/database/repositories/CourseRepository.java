@@ -65,7 +65,7 @@ public interface CourseRepository extends JpaRepository<CourseDBO, Long> {
    * @return A list of {@link CourseDBO} objects that belong to the specified category.
    */
   @Query(
-      "SELECT c FROM CourseDBO c JOIN c.courseCategories cat WHERE LOWER(cat.categoryName) = LOWER(:categoryName)")
+          "SELECT c FROM CourseDBO c JOIN c.category cat WHERE LOWER(cat.categoryName) = LOWER(:categoryName)")
   List<CourseDBO> findCoursesByCategoryName(@Param("categoryName") String categoryName);
 
   /**

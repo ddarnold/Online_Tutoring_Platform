@@ -13,7 +13,7 @@ import java.util.List;
 public interface CourseMapper {
 
   @Mapping(source = "createdBy", target = "createdBy") // Map 'createdBy' field
-  @Mapping(source = "courseCategories", target = "courseCategories") // Map courseCategories
+  @Mapping(source = "category", target = "category") // Map courseCategories
   CourseDTO toDTO(CourseDBO course);
 
   List<CourseDTO> toDTOList(List<CourseDBO> courses);

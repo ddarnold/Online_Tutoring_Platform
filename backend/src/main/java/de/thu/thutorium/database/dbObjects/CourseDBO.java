@@ -51,11 +51,9 @@ public class CourseDBO {
    * that these operations are propagated to the associated categories. The counterpart is denoted by a Set<CourseDBO> #
    * called 'courses' in {@link CourseCategoryDBO}.
    */
-  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-  @JoinTable(name = "courses_categories",
-          joinColumns = @JoinColumn(name = "course_id"),
-          inverseJoinColumns = @JoinColumn(name = "category_id"))
-  private Set<CourseCategoryDBO> courseCategories;
+  @ManyToOne
+  @JoinColumn(name = "course_category_id", nullable = false)
+  private CourseCategoryDBO category;;
 
   /**
    * A short description of the course (1-2 sentences). This field is mandatory and cannot be null.

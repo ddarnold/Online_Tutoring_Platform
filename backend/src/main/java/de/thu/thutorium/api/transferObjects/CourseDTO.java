@@ -25,6 +25,6 @@ public class CourseDTO {
   private UserBaseDTO createdBy;
 
   // List of categories associated with the course
-  private List<CourseCategoryDTO> courseCategories;
+  private CourseCategoryDTO category;
 
 }
