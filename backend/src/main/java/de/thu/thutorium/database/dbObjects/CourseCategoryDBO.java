@@ -45,7 +45,9 @@ public class CourseCategoryDBO {
    * The cascade types {@code PERSIST}, {@code MERGE}, and {@code REFRESH} ensure that these operations
    * are propagated to the associated courses.
    */
-  @ManyToMany(mappedBy = "courseCategories",
-          cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+  @JoinTable(name = "courses_categories",
+          joinColumns = @JoinColumn(name = "category_id"),
+          inverseJoinColumns = @JoinColumn(name = "course_id"))
   private Set<CourseDBO> courses;
 }

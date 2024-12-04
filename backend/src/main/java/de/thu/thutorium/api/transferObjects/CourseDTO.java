@@ -24,8 +24,7 @@ public class CourseDTO {
   // User who created the course (only basic details)
   private UserBaseDTO createdBy;
 
-//  // Existing fields
-//  private List<CourseCategoryDTO> courseCategories;
-//  private List<RatingCourseDTO> receivedCourseRatings;
+  // List of categories associated with the course
+  private List<CourseCategoryDTO> courseCategories;
 
 }
