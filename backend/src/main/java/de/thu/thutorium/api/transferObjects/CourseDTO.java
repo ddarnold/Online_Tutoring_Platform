@@ -27,4 +27,8 @@ public class CourseDTO {
   // List of categories associated with the course
   private CourseCategoryDTO category;
 
+  // List of ratings for this course
+  private List<RatingCourseDTO> receivedCourseRatings;
+
+
 }

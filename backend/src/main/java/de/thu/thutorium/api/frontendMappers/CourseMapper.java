@@ -14,6 +14,7 @@ public interface CourseMapper {
 
   @Mapping(source = "createdBy", target = "createdBy") // Map 'createdBy' field
   @Mapping(source = "category", target = "category") // Map courseCategories
+  @Mapping(target = "receivedCourseRatings", source = "receivedCourseRatings") // Map List<RatingCourseDBO> to List<RatingCourseDTO>
   CourseDTO toDTO(CourseDBO course);
 
   List<CourseDTO> toDTOList(List<CourseDBO> courses);
