@@ -2,6 +2,8 @@ package de.thu.thutorium.api.transferObjects;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * Data Transfer Object (DTO) representing a student in the system.
  *
@@ -11,5 +13,5 @@ import lombok.Data;
  */
 @Data
 public class StudentDTO extends UserBaseDTO {
-  // student-specific fields
+    private List<CourseDTO> enrolledCourses; // Assuming you have a CourseDTO for course details
 }

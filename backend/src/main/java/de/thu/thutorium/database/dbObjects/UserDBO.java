@@ -1,6 +1,5 @@
 package de.thu.thutorium.database.dbObjects;
 
-import de.thu.thutorium.database.dbObjects.enums.Role;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
