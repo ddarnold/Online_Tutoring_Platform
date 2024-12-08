@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<UserDBO, Long> {
    * @param roleName the name of the role (e.g., STUDENT, TUTOR)
    * @return the total count of users with the specified role
    */
-  @Query("SELECT COUNT(u) FROM UserDBO u JOIN u.roles r WHERE r.name = :roleName")
+  @Query("SELECT COUNT(u) FROM UserDBO u JOIN u.roles r WHERE r.role = :roleName")
   Long countByRole(@Param("roleName") String roleName);
 
   /**
@@ -38,9 +38,9 @@ public interface UserRepository extends JpaRepository<UserDBO, Long> {
    *     string.
    */
   @Query(
-      "SELECT u FROM UserDBO u JOIN u.roles r WHERE r.name = 'TUTOR' AND "
-          + "(LOWER(CONCAT(u.firstName, ' ', u.lastName)) LIKE LOWER(CONCAT('%', :tutorName, '%')) OR "
-          + "LOWER(CONCAT(u.lastName, ' ', u.firstName)) LIKE LOWER(CONCAT('%', :tutorName, '%')))")
+          "SELECT u FROM UserDBO u JOIN u.roles r WHERE r.role = 'TUTOR' AND "
+                  + "(LOWER(CONCAT(u.firstName, ' ', u.lastName)) LIKE LOWER(CONCAT('%', :tutorName, '%')) OR "
+                  + "LOWER(CONCAT(u.lastName, ' ', u.firstName)) LIKE LOWER(CONCAT('%', :tutorName, '%')))")
   List<UserDBO> findByTutorFullName(@Param("tutorName") String tutorName);
 
   /**
@@ -60,6 +60,6 @@ public interface UserRepository extends JpaRepository<UserDBO, Long> {
    * @return the {@link UserDBO} entity with the specified user ID and the role of "TUTOR", or
    *     {@code null} if no matching tutor is found.
    */
-  @Query("SELECT u FROM UserDBO u JOIN u.roles r WHERE u.userId = :userId AND r.name = 'TUTOR'")
+  @Query("SELECT u FROM UserDBO u JOIN u.roles r WHERE u.userId = :userId AND r.role = 'TUTOR'")
   UserDBO findByTutorId(@Param("userId") Long userId);
 }

@@ -22,11 +22,12 @@ public interface CourseRepository extends JpaRepository<CourseDBO, Long> {
    * @param lastName The participant's last name.
    * @return A list of {@link CourseDBO} objects where the participant has the "Tutor" role.
    */
-  @Query("SELECT c FROM CourseDBO c JOIN c.createdBy u "
-          + "WHERE LOWER(u.firstName) LIKE LOWER(CONCAT('%', :firstName, '%')) "
-          + "AND LOWER(u.lastName) LIKE LOWER(CONCAT('%', :lastName, '%'))")
+  @Query("SELECT c FROM CourseDBO c JOIN c.students s JOIN s.roles r "
+          + "WHERE r.role = 'TUTOR' "
+          + "AND LOWER(s.firstName) LIKE LOWER(CONCAT('%', :firstName, '%')) "
+          + "AND LOWER(s.lastName) LIKE LOWER(CONCAT('%', :lastName, '%'))")
   List<CourseDBO> findByTutorFirstNameAndLastName(
-      @Param("firstName") String firstName, @Param("lastName") String lastName);
+          @Param("firstName") String firstName, @Param("lastName") String lastName);
 
   /**
    * Finds courses where a participant with a specific full name has the "Tutor" role.
@@ -35,9 +36,10 @@ public interface CourseRepository extends JpaRepository<CourseDBO, Long> {
    * @return A list of {@link CourseDBO} objects where the participant has the "Tutor" role.
    */
   @Query(
-      "SELECT c FROM CourseDBO c JOIN c.createdBy u "
-          + "WHERE (LOWER(CONCAT(u.firstName, ' ', u.lastName)) LIKE LOWER(CONCAT('%', :tutorName, '%')) "
-          + "OR LOWER(CONCAT(u.lastName, ' ', u.firstName)) LIKE LOWER(CONCAT('%', :tutorName, '%'))) ")
+          "SELECT c FROM CourseDBO c JOIN c.students s JOIN s.roles r "
+                  + "WHERE r.role = 'TUTOR' "
+                  + "AND (LOWER(CONCAT(s.firstName, ' ', s.lastName)) LIKE LOWER(CONCAT('%', :tutorName, '%')) "
+                  + "OR LOWER(CONCAT(s.lastName, ' ', s.firstName)) LIKE LOWER(CONCAT('%', :tutorName, '%')))")
   List<CourseDBO> findByTutorFullName(@Param("tutorName") String tutorName);
 
   /**
@@ -65,7 +67,7 @@ public interface CourseRepository extends JpaRepository<CourseDBO, Long> {
    * @return A list of {@link CourseDBO} objects that belong to the specified category.
    */
   @Query(
-          "SELECT c FROM CourseDBO c JOIN c.category cat WHERE LOWER(cat.categoryName) = LOWER(:categoryName)")
+          "SELECT c FROM CourseDBO c JOIN c.courseCategories cc WHERE LOWER(cc.categoryName) = LOWER(:categoryName)")
   List<CourseDBO> findCoursesByCategoryName(@Param("categoryName") String categoryName);
 
   /**
