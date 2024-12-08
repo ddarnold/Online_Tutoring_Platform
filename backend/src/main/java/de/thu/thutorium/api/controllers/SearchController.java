@@ -2,7 +2,7 @@ package de.thu.thutorium.api.controllers;
 
 import de.thu.thutorium.api.transferObjects.CourseCategoryDTO;
 import de.thu.thutorium.api.transferObjects.CourseDTO;
-import de.thu.thutorium.api.transferObjects.UserBaseDTO;
+import de.thu.thutorium.api.transferObjects.TutorDTO;
 import de.thu.thutorium.database.dbObjects.CourseCategoryDBO;
 import de.thu.thutorium.services.interfaces.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class SearchController {
 
     // If tutorName is provided, search for tutors and add to the results
     if (tutorName != null && !tutorName.isEmpty()) {
-      List<UserBaseDTO> tutors = searchService.searchTutors(tutorName);
+      List<TutorDTO> tutors = searchService.searchTutors(tutorName);
       results.addAll(tutors); // Add tutors to the results list
     }
 

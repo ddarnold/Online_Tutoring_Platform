@@ -23,36 +23,27 @@ import java.util.List;
  * or services.
  */
 @Mapper(
-    componentModel = "spring",
-    uses = {UserMapper.class, CourseCategoryMapper.class},
-    unmappedTargetPolicy = ReportingPolicy.IGNORE)
+        componentModel = "spring",
+        uses = {CourseCategoryMapper.class, RatingCourseMapper.class},
+        unmappedTargetPolicy = ReportingPolicy.IGNORE
+)
 public interface CourseMapper {
+
   /**
-   * Converts a {@link CourseDBO} (representing a course in the database) to a {@link CourseDTO}.
+   * Maps a single CourseDBO to a CourseDTO.
    *
-   * <p>This method uses the {@link UserMapper} to map the {@code createdBy} field (which is a
-   * {@code UserDBO}) to {@code UserBaseDTO}, and the {@link CourseCategoryMapper} to map the {@code
-   * category} field (which is a {@code CourseCategoryDBO}) to {@code CourseCategoryDTO}.
-   *
-   * @param course the {@code CourseDBO} object representing the course to convert
-   * @return a {@code CourseDTO} object containing the course data
+   * @param course The CourseDBO instance to map.
+   * @return The mapped CourseDTO.
    */
-  @Mapping(source = "createdBy", target = "createdBy") // Map 'createdBy' field
-  @Mapping(source = "category", target = "category") // Map courseCategories
-  @Mapping(
-      target = "receivedCourseRatings",
-      source = "receivedCourseRatings") // Map List<RatingCourseDBO> to List<RatingCourseDTO>
+  @Mapping(target = "courseCategories", source = "courseCategories") // Map course categories
+  @Mapping(target = "receivedCourseRatings", source = "receivedCourseRatings") // Map received course ratings
   CourseDTO toDTO(CourseDBO course);
 
   /**
-   * Converts a list of {@link CourseDBO} (representing multiple courses in the database) to a list
-   * of {@link CourseDTO}.
+   * Maps a list of CourseDBO instances to a list of CourseDTOs.
    *
-   * <p>This method internally calls the {@link #toDTO(CourseDBO)} method for each {@code CourseDBO}
-   * in the list.
-   *
-   * @param courses a list of {@code CourseDBO} objects to convert
-   * @return a list of {@code CourseDTO} objects containing the course data
+   * @param courses The list of CourseDBO instances to map.
+   * @return The mapped list of CourseDTOs.
    */
   List<CourseDTO> toDTOList(List<CourseDBO> courses);
 }

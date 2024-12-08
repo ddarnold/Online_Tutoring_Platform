@@ -1,6 +1,7 @@
 package de.thu.thutorium.services.interfaces;
 
 import de.thu.thutorium.api.transferObjects.CourseDTO;
+import de.thu.thutorium.api.transferObjects.TutorDTO;
 import de.thu.thutorium.api.transferObjects.UserBaseDTO;
 import de.thu.thutorium.database.dbObjects.CourseCategoryDBO;
 
@@ -30,7 +31,7 @@ public interface SearchService {
    * @return a list of {@link UserBaseDTO} objects representing tutors that match the search
    *     criteria. If no tutors are found, an empty list is returned.
    */
-  List<UserBaseDTO> searchTutors(String tutorName);
+  List<TutorDTO> searchTutors(String tutorName);
 
   /**
    * Searches for courses by the given course name.

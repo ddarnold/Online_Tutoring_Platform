@@ -1,10 +1,13 @@
 package de.thu.thutorium.api.frontendMappers;
 
 import de.thu.thutorium.api.transferObjects.TutorDTO;
+import de.thu.thutorium.api.transferObjects.UserBaseDTO;
 import de.thu.thutorium.database.dbObjects.UserDBO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
+
+import java.util.List;
 
 /**
  * A MapStruct mapper interface for converting between {@link UserDBO} (User Database Object) and
@@ -39,4 +42,7 @@ public interface TutorMapper {
    */
   @Mapping(target = "courses", source = "courses") // Map Set<CourseDBO> to List<CourseDTO>
   TutorDTO toDTO(UserDBO tutor);
+
+  List<TutorDTO> toDTOList(List<UserDBO> users);
+
 }

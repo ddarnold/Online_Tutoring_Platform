@@ -1,8 +1,10 @@
 package de.thu.thutorium.services.implementations;
 
 import de.thu.thutorium.api.frontendMappers.CourseMapper;
+import de.thu.thutorium.api.frontendMappers.TutorMapper;
 import de.thu.thutorium.api.frontendMappers.UserMapper;
 import de.thu.thutorium.api.transferObjects.CourseDTO;
+import de.thu.thutorium.api.transferObjects.TutorDTO;
 import de.thu.thutorium.api.transferObjects.UserBaseDTO;
 import de.thu.thutorium.database.dbObjects.CourseCategoryDBO;
 import de.thu.thutorium.database.dbObjects.CourseDBO;
@@ -29,7 +31,7 @@ public class SearchServiceImpl implements SearchService {
   @Autowired private CourseMapper CourseMapper;
 
   @Autowired private UserRepository userRepository;
-  @Autowired private UserMapper UserMapper;
+  @Autowired private TutorMapper TutorMapper;
 
   @Autowired private CategoryRepository categoryRepository;
 
@@ -45,9 +47,9 @@ public class SearchServiceImpl implements SearchService {
    *     criteria. If no tutors are found, an empty list is returned.
    */
   @Override
-  public List<UserBaseDTO> searchTutors(String tutorName) {
+  public List<TutorDTO> searchTutors(String tutorName) {
     List<UserDBO> tutors = userRepository.findByTutorFullName(tutorName);
-    return UserMapper.toDTOList(tutors);
+    return TutorMapper.toDTOList(tutors);
   }
 
   /**

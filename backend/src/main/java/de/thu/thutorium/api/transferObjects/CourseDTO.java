@@ -19,13 +19,6 @@ import lombok.Data;
  */
 @Data
 public class CourseDTO {
-  /**
-   * The unique identifier for the course.
-   *
-   * <p>This field represents the unique ID for the course, which is used for identifying and
-   * retrieving the course from the system.
-   */
-  private Long courseId;
 
   /**
    * The name of the course.
@@ -57,7 +50,7 @@ public class CourseDTO {
    * <p>This field records the date and time when the course was created, helping track the course's
    * creation date within the system.
    */
-  private LocalDateTime createdAt;
+  private LocalDateTime createdOn;
 
   /**
    * The start date of the course.
@@ -76,23 +69,13 @@ public class CourseDTO {
   private LocalDate endDate;
 
   /**
-   * Basic information about the user who created the course.
-   *
-   * <p>This field contains a {@code UserBaseDTO} object, representing the creator of the course. It
-   * includes basic details such as the user's name and email, but does not include sensitive
-   * information.
-   */
-  private UserBaseDTO createdBy;
-
-  /**
    * The category associated with the course.
    *
    * <p>This field contains a {@code CourseCategoryDTO} object, which represents the category or
    * subject area the course falls under. Categories help organize courses and make it easier for
    * students to find relevant courses.
    */
-  private CourseCategoryDTO category;
-
+  private List<CourseCategoryDTO> courseCategories;
   /**
    * A list of ratings for the course.
    *
