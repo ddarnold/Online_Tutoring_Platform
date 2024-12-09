@@ -37,6 +37,7 @@ public interface CourseMapper {
    */
   @Mapping(target = "courseCategories", source = "courseCategories") // Map course categories
   @Mapping(target = "receivedCourseRatings", source = "receivedCourseRatings") // Map received course ratings
+  @Mapping(target = "tutorId", source = "tutor.userId") // Map tutor ID
   CourseDTO toDTO(CourseDBO course);
 
   /**

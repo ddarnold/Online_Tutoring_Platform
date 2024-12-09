@@ -84,4 +84,6 @@ public class CourseDTO {
    * the course content and the overall student experience.
    */
   private List<RatingCourseDTO> receivedCourseRatings;
+
+  private Long tutorId;
 }

@@ -251,6 +251,7 @@ public class UserDBO {
     this.receivedScores= new ArrayList<>();
     this.courseCategories= new ArrayList<>();
     this.meetingsScheduled= new ArrayList<>();
+    this.tutorCourses= new ArrayList<>();
   }
 
 }
