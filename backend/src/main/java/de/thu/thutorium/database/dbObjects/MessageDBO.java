@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import de.thu.thutorium.database.dbObjects.ChatDBO;
 
 import java.time.LocalDateTime;
 
@@ -66,4 +67,8 @@ public class MessageDBO {
   /** Flag indicating whether the message has been read. */
   @Column(name = "is_read", nullable = false)
   private Boolean isRead = false;
+
+  @ManyToOne
+  @JoinColumn(name = "chat_id", nullable = false)
+  private ChatDBO chat;
 }
