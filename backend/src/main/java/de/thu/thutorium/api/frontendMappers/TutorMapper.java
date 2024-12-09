@@ -40,7 +40,7 @@ public interface TutorMapper {
    * @param tutor the {@code UserDBO} object representing the tutor to convert
    * @return a {@code TutorDTO} object containing the tutor's data
    */
-  @Mapping(target = "courses", source = "courses") // Map Set<CourseDBO> to List<CourseDTO>
+  @Mapping(target = "tutorCourses", source = "tutorCourses") // Map Set<CourseDBO> to List<CourseDTO>
   TutorDTO toDTO(UserDBO tutor);
 
   List<TutorDTO> toDTOList(List<UserDBO> users);

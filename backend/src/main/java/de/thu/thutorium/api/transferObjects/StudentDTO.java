@@ -13,5 +13,5 @@ import java.util.List;
  */
 @Data
 public class StudentDTO extends UserBaseDTO {
-    private List<CourseDTO> enrolledCourses; // Assuming you have a CourseDTO for course details
+    private List<CourseDTO> studentCourses; // Assuming you have a CourseDTO for course details
 }

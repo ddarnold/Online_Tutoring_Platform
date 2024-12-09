@@ -16,6 +16,6 @@ public interface StudentMapper {
     /**
      * Maps a UserDBO representing a student to a StudentDTO.
      */
-    @Mapping(target = "enrolledCourses", source = "courses")
+    @Mapping(target = "studentCourses", source = "studentCourses")
     StudentDTO toDTO(UserDBO student);
 }

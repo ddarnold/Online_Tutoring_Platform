@@ -28,7 +28,7 @@ public class TutorDTO extends UserBaseDTO {
    * tutor is teaching or has taught. This allows for easy retrieval of all the courses associated
    * with a tutor.
    */
-  private List<CourseDTO> courses;
+  private List<CourseDTO> tutorCourses;
 
   /**
    * The list of ratings given to the tutor by students.
