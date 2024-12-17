@@ -617,3 +617,4 @@ Temporary Items
 
 .vscode/
 /database
+**/package-lock.json

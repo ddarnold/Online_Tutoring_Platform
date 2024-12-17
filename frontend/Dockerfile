@@ -14,7 +14,7 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Build the Angular application for production
+# Build the React application for production
 RUN npm run build
 
 # Use Nginx to serve the application

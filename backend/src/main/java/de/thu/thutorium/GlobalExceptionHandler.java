@@ -5,6 +5,7 @@ import de.thu.thutorium.database.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.naming.AuthenticationException;
 
 /**
  * Global exception handler for managing various exceptions in the application.
@@ -103,6 +105,38 @@ public class GlobalExceptionHandler {
         errorResponse.put("message", ex.getMessage());
 
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     * Handles {@link AuthenticationException} exceptions thrown upon authentication exceptions.
+     * This method captures the exception and returns a {@link ResponseEntity} with a {@link HttpStatus#UNAUTHORIZED} status.
+     *
+     * @param ex the {@code AuthenticationException} exception
+     * @return a {@code ResponseEntity} containing the error message
+     */
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<Map<String, String>> handleAuthenticationException(AuthenticationException ex) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("error", "Authentication error");
+        errorResponse.put("message", ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
+    }
+
+    /**
+     * Handles {@link UsernameNotFoundException} exceptions thrown upon authentication exceptions where usernames are not found.
+     * This method captures the exception and returns a {@link ResponseEntity} with a {@link HttpStatus#NOT_FOUND} status.
+     *
+     * @param ex the {@code UsernameNotFoundException} exception
+     * @return a {@code ResponseEntity} containing the error message
+     */
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleUsernameNotFoundException(UsernameNotFoundException ex) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("error", "Username not found");
+        errorResponse.put("message", ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 }
 

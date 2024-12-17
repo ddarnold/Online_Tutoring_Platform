@@ -1,7 +1,8 @@
 package de.thu.thutorium.services.implementations;
 
-import de.thu.thutorium.api.mappers.common.AddressMapper;
+import de.thu.thutorium.api.TOMappers.common.AddressTOMapper;
 import de.thu.thutorium.api.transferObjects.common.AddressTO;
+import de.thu.thutorium.database.DBOMappers.common.AddressDBOMapper;
 import de.thu.thutorium.database.dbObjects.AddressDBO;
 import de.thu.thutorium.database.exceptions.ResourceAlreadyExistsException;
 import de.thu.thutorium.database.repositories.AddressRepository;
@@ -19,7 +20,8 @@ import java.util.Optional;
 @Service
 public class AddressServiceImpl implements AddressService {
     private final AddressRepository addressRepository;
-    private final AddressMapper addressMapper;
+    private final AddressTOMapper addressTOMapper;
+    private final AddressDBOMapper addressDBOMapper;
 
     /**
      * Creates a new address.
@@ -32,9 +34,9 @@ public class AddressServiceImpl implements AddressService {
         if (addressExists(address)) {
             throw new ResourceAlreadyExistsException(address + " already exists!");
         }
-        AddressDBO addressDBO = addressMapper.toDBO(address);
+        AddressDBO addressDBO = addressDBOMapper.toDBO(address);
         AddressDBO savedAddressDBO = addressRepository.save(addressDBO);
-        return addressMapper.toDTO(savedAddressDBO);
+        return addressTOMapper.toDTO(savedAddressDBO);
     }
 
     /**

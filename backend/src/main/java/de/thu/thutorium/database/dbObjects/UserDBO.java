@@ -329,8 +329,8 @@ public class UserDBO implements UserDetails {
   public String toString() {
     return "UserDBO {"
             + "id=" + userId
-            + ", email='" + email + '\''
-            + ", password='[PROTECTED]'"
+            + ", email='" + email
+            + ", description= " + description
             + ", roles=" + roles
             + '}';
   }

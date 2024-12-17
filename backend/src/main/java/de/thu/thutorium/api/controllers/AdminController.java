@@ -41,6 +41,16 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
+    /**
+     * Creates a new address.
+     * This endpoint accepts a {@link AddressTO} object in the request body and
+     * creates a new address entity.
+     * The request body is validated using the {@link Valid} annotation.
+     *
+     * @param address the {@code AddressTO} object containing the address data
+     * @return a {@code ResponseEntity} containing the created {@code AdressTO}
+     * object and a {@link HttpStatus#CREATED} status
+     */
     @PostMapping("create-address")
     public ResponseEntity<AddressTO> createAddress(@Valid @RequestBody AddressTO address) {
         AddressTO created = addressService.createAddress(address);

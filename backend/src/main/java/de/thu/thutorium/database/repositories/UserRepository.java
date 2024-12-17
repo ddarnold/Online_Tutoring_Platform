@@ -42,6 +42,24 @@ public interface UserRepository extends JpaRepository<UserDBO, Integer> {
      */
     UserDBO findByEmailAndRoles(String email, Set<RoleDBO> roles);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Retrieves a {@link UserDBO} entity by its unique identifier.
      *
@@ -49,8 +67,10 @@ public interface UserRepository extends JpaRepository<UserDBO, Integer> {
      * @return The {@link UserDBO} entity with the specified user ID, or {@code null} if no user is
      *     found.
      */
-    @Query("SELECT u FROM UserDBO u WHERE u.userId = :userId")
-    UserDBO findByUserId(@Param("userId") Long userId);
+//    @Query("SELECT u FROM UserDBO u WHERE u.userId = :userId")
+//    UserDBO findByUserId(@Param("userId") Long userId);
+    // Optional<UserDBO> findByUserId(@Param("userId") Long userId);
+
 
 
     /**
