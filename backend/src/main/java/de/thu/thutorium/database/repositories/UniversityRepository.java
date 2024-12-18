@@ -18,6 +18,7 @@ import java.util.Optional;
  * {@code deleteById}, and many more, allowing for easy interaction with the
  * database.
  * </p>
+ * Todo: Revise Deprecated methods
  */
 @Repository
 public interface UniversityRepository extends JpaRepository<UniversityDBO, Long> {
@@ -25,7 +26,10 @@ public interface UniversityRepository extends JpaRepository<UniversityDBO, Long>
      * Finds a university by its name.
      *
      * @param universityName the name of the university
-     * @return an {@code Optional} containing the found {@code UniversityDBO} or {@code Optional.empty()} if not found
+     * @return an {@code Optional} containing the found {@code UniversityDBO} or
+     * {@code Optional.empty()} if not found
+     * Todo : Check and revise
      */
+    @Deprecated
     Optional<UniversityDBO> findByUniversityName(String universityName);
 }

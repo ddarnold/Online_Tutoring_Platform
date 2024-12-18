@@ -18,7 +18,7 @@ import java.util.Optional;
  * can be used to perform
  * database operations on {@code AffiliationDBO} entities.
  * </p>
-
+ * Todo: Revise Deprecated methods
  */
 @Repository
 public interface AffiliationRepository extends JpaRepository<AffiliationDBO, Long> {
@@ -28,6 +28,8 @@ public interface AffiliationRepository extends JpaRepository<AffiliationDBO, Lon
      * @param affiliationType the affiliation type to check
      * @param universityName the name of the university  to check
      * @return {@code Optional<AffiliationDBO>} object if it exists according to the parameters above.
+     * @deprecated : Check and revise.
      */
+    @Deprecated
     Optional<AffiliationDBO> findByAffiliationTypeAndUniversity_UniversityName(AffiliationType affiliationType, String universityName);
 }

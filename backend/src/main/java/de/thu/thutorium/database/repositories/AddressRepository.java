@@ -25,7 +25,7 @@ import java.util.Optional;
 @Repository
 public interface AddressRepository extends JpaRepository<AddressDBO, Long> {
     /**
-     * @deprecated : Revise
+     * @deprecated : Check and Revise
      */
     @Deprecated
     Optional<AddressDBO> findByHouseNumAndStreetNameAndPostalCodeAndCountryContainsIgnoreCase(String houseNum,
