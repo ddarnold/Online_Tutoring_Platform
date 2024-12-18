@@ -242,6 +242,15 @@ public class UserDBO implements UserDetails {
   private List<CourseDBO> tutorCourses = new ArrayList<>();
 
   /**
+   * List of chats in which the user is a participant
+   * <p>
+   * Defines a many-to-many relationship with {@link ChatDBO}, the participants in the meetings.
+   */
+  @ManyToMany(mappedBy = "chatParticipants")
+  @Builder.Default
+  private List<ChatDBO> chats = new ArrayList<>();
+
+  /**
    * Constructs a UserDBO object with default values.
    */
   public UserDBO() {
@@ -258,6 +267,7 @@ public class UserDBO implements UserDetails {
     this.receivedScores = new ArrayList<>();
     this.courseCategories = new ArrayList<>();
     this.meetingsScheduled = new ArrayList<>();
+    this.chats = new ArrayList<>();
   }
 
   /**

@@ -65,4 +65,15 @@ public class MessageDBO {
   @Column(name = "is_read", nullable = false)
   @Builder.Default
   private Boolean isRead = false;
+
+  /**
+   * The chat this message belongs to.
+   *
+   * <p>Defines a many-to-one relationship with {@link ChatDBO}.The counterpart is denoted by a
+   * List<MessageDBO> called 'chat_messages' in {@link ChatDBO}.
+   */
+  @ManyToOne
+  @JoinColumn(name = "chat_id", nullable = false)
+  private ChatDBO chat;
+
 }
