@@ -20,6 +20,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserTO {
 
+    private Long userId;
+
     /**
      * The first name of the user.
      *

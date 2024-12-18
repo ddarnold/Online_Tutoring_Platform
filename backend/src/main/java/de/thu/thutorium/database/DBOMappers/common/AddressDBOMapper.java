@@ -10,7 +10,7 @@ import org.mapstruct.Mapper;
  */
 @Mapper(componentModel = "spring")
 public interface AddressDBOMapper {
-        /**
+    /**
      * Converts an {@link AddressTO} object to an {@link AddressDBO} object.
      *
      * @param addressTO the {@code AdminAddressTO} object to convert

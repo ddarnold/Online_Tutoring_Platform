@@ -1,8 +1,10 @@
 package de.thu.thutorium.services.interfaces;
 
+import de.thu.thutorium.api.transferObjects.common.CourseCategoryTO;
 import de.thu.thutorium.api.transferObjects.common.UserTO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -10,6 +12,13 @@ import java.util.Optional;
  */
 @Service
 public interface UserService {
+
+//    Optional<UserTO> findByUserId(int userId);
+//    List<UserTO> findAllUsers();
+//    List<UserTO> findAllStudents();
+//    List<UserTO> findAllTutors();
+//    List<UserTO> findAllVerifiers();
+//    List<UserTO> findAllAdmins();
 
     /**
      * Updates an existing user.

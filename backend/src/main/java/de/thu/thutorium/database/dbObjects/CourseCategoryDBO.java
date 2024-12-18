@@ -46,7 +46,7 @@ public class CourseCategoryDBO {
    * The timestamp when the course category was created. This field is mandatory and cannot be {@code null}.
    */
   @Column(name = "created_on")
-  private LocalDateTime createdOn;
+  private LocalDateTime createdOn = LocalDateTime.now();
 
   /**
    * The user (admin) who created the course category.
