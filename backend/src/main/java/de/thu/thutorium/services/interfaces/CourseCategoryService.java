@@ -27,6 +27,7 @@ public interface CourseCategoryService {
      * @return the created course category as a {@link CourseCategoryTO}
      */
     CourseCategoryTO createCourseCategory(CourseCategoryTO courseCategoryTO);
+
     /**
      * Finds a course category by its ID.
      *

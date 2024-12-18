@@ -1,9 +1,7 @@
 package de.thu.thutorium.api.TOMappers.common;
 
 import de.thu.thutorium.api.transferObjects.common.CourseTO;
-import de.thu.thutorium.api.transferObjects.common.UniversityTO;
 import de.thu.thutorium.database.dbObjects.CourseDBO;
-import de.thu.thutorium.database.dbObjects.UniversityDBO;
 import org.mapstruct.*;
 
 /**

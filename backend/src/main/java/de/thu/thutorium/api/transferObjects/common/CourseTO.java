@@ -12,7 +12,6 @@ import java.time.LocalDate;
  *     and persistence layers of the application.
  *     It includes information such as course name, description and other relevant information.
  * </p>
- * 
  */
 @Getter
 @Setter

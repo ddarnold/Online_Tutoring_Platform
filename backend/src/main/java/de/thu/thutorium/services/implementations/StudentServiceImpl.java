@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 /**
  * Implementation of the {@link StudentService} interface for managing student related requests.
  * <p>
- * This calss provides the actual implementation logic for the operations defined in the 
+ * This class provides the actual implementation logic for the operations defined in the
  * {@link StudentService}. It interacts with the database through repositories
  * to perfome the intended operations.
  */
@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 public class StudentServiceImpl implements StudentService {
     /**
      * Enrolls students in a course
-     * 
      * <P>
      * This method checks if the requested {@link de.thu.thutorium.api.transferObjects.common.UserTO} student and
      * the {@link de.thu.thutorium.api.transferObjects.common.CourseTO} course exist in the database.
