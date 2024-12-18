@@ -18,12 +18,16 @@ import java.util.Optional;
  * database operations on {@code AddressDBO} entities.
  * </p>
  * <p>
- * Todo: Handle whitepaces in the fields (possibly with JPQL queries)
+ * Todo: Revise Deprecated methods
  * </p>
  *
  */
 @Repository
 public interface AddressRepository extends JpaRepository<AddressDBO, Long> {
+    /**
+     * @deprecated : Revise
+     */
+    @Deprecated
     Optional<AddressDBO> findByHouseNumAndStreetNameAndPostalCodeAndCountryContainsIgnoreCase(String houseNum,
                                                                                               String streetName,
                                                                                               String postalCode,

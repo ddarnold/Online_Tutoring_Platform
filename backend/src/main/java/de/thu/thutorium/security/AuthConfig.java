@@ -26,6 +26,7 @@ public class AuthConfig {
      * Provides user details based on the username.
      *
      * @return a UserDetailsService implementation
+     * Todo : Implement an Authentication Service to be consistent with the general code structure.
      */
     @Bean
     public UserDetailsService userDetailsService() {
