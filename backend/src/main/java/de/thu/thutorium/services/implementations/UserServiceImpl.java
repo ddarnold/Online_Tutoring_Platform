@@ -11,6 +11,7 @@ import de.thu.thutorium.services.interfaces.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -69,6 +70,27 @@ public class UserServiceImpl implements UserService {
             return Optional.of(userTOMapper.toDTO(updatedUser));
         } else {
             return Optional.empty();
+        }
+    }
+
+    /**
+     * Deletes a user by their ID.
+     * <p>
+     * This method checks if a user with the given ID exists in the repository.
+     * If the user exists, they are deleted from the repository.
+     * If the user does not exist, a {@link UsernameNotFoundException} is thrown.
+     * </p>
+     *
+     * @param id the ID of the user to be deleted
+     * @throws UsernameNotFoundException if no user with the given ID is found
+     */
+    @Override
+    @Transactional
+    public void deleteUser(int id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+        } else {
+            throw new UsernameNotFoundException("User not found with id " + id);
         }
     }
 }

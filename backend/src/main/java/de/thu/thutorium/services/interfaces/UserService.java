@@ -20,4 +20,11 @@ public interface UserService {
      */
     Optional<UserTO> updateUser(int id, UserTO user);
 
+    /**
+     * Deletes an existing user.
+     *
+     * @param id the id of the user
+     */
+    void deleteUser(int id);
+
 }
