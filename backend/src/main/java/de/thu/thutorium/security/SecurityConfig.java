@@ -38,6 +38,15 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers(
+                                "/v2/api-docs",
+                                "/v3/api-docs/**",
+                                "/swagger-resources/**",
+                                "/swagger-ui.html",
+                                "/swagger-ui/**",
+                                "/webjars/**",
+                                "/v3/api-docs.yaml")
+                        .permitAll()
                         .requestMatchers("/student/**").hasRole("STUDENT")
                         .requestMatchers("/tutor/**").hasRole("TUTOR")
                         .requestMatchers("/verifier/**").hasRole("VERIFIER")
@@ -77,6 +86,19 @@ public class SecurityConfig {
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration); // Apply the configuration to all endpoints
+
+        // Specific CORS configuration for Swagger endpoints
+        CorsConfiguration swaggerConfiguration = new CorsConfiguration();
+        swaggerConfiguration.setAllowedOrigins(List.of("*")); // Allow all origins
+        swaggerConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE")); // Allow specific HTTP methods
+        swaggerConfiguration.setAllowedHeaders(List.of("Authorization", "Content-Type")); // Allow specific headers
+        swaggerConfiguration.setAllowCredentials(true); // Allow credentials for authorization headers
+
+        source.registerCorsConfiguration("/swagger-ui.html", swaggerConfiguration);
+        source.registerCorsConfiguration("/swagger-ui/**", swaggerConfiguration);
+        source.registerCorsConfiguration("/v3/api-docs/**", swaggerConfiguration);
+        source.registerCorsConfiguration("/v3/api-docs.yaml", swaggerConfiguration);
+
         return source;
     }
 }
