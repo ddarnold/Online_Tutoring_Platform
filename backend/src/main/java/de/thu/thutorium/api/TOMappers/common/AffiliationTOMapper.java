@@ -9,7 +9,8 @@ import org.mapstruct.Mappings;
 /**
  * Mapper interface for converting {@link AffiliationDBO} to {@link AffiliationTO}.
  */
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",
+        uses = { UniversityTOMapper.class})
 public interface AffiliationTOMapper {
         /**
          * Maps an AffiliationDBO to an AffiliationTO.
@@ -18,7 +19,7 @@ public interface AffiliationTOMapper {
          * @return the resulting AffiliationTO
          */
         @Mappings({
-                        @Mapping(source = "university.universityName", target = "universityName"),
+                @Mapping(source = "university.universityName", target = "universityName"),
         })
         AffiliationTO toDTO(AffiliationDBO affiliation);
 }

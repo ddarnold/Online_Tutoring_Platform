@@ -19,6 +19,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @ToString
 public class CourseTO {
+
+    private Long courseId;
+
     /**
      * The name of the course.
      *
@@ -28,9 +31,8 @@ public class CourseTO {
     @NotNull(message = "Course name cannot be empty.")
     private String courseName;
 
-    /** The ID of the tutor who created the course. */
-    @NotNull(message = "Tutor cannot be empty.")
-    private Long tutorId;
+//    /** The ID of the tutor who created the course. */
+//    private Long tutor;
 
     /**
      * A short description of the course.
