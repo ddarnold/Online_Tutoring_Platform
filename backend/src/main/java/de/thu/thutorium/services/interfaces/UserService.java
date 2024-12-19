@@ -11,13 +11,6 @@ import java.util.Optional;
 @Service
 public interface UserService {
 
-//    Optional<UserTO> findByUserId(int userId);
-//    List<UserTO> findAllUsers();
-//    List<UserTO> findAllStudents();
-//    List<UserTO> findAllTutors();
-//    List<UserTO> findAllVerifiers();
-//    List<UserTO> findAllAdmins();
-
     /**
      * Updates an existing user.
      *

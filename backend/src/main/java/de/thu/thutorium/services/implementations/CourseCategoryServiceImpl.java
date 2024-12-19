@@ -1,12 +1,16 @@
 package de.thu.thutorium.services.implementations;
 
+import de.thu.thutorium.api.TOMappers.common.CourseCategoryTOMapper;
 import de.thu.thutorium.api.transferObjects.common.CourseCategoryTO;
+import de.thu.thutorium.database.DBOMappers.common.CourseCategoryDBOMapper;
+import de.thu.thutorium.database.dbObjects.CourseCategoryDBO;
+import de.thu.thutorium.database.exceptions.ResourceAlreadyExistsException;
 import de.thu.thutorium.database.repositories.CourseCategoryRepository;
 import de.thu.thutorium.services.interfaces.CourseCategoryService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -29,52 +33,44 @@ import java.util.Optional;
 public class CourseCategoryServiceImpl implements CourseCategoryService {
 
     private final CourseCategoryRepository courseCategoryRepository;
+    private final CourseCategoryDBOMapper courseCategoryDBOMapper;
+    private final CourseCategoryTOMapper courseCategoryTOMapper;
 
     /**
      * Creates a new course category.
      *
-     * @param courseCategoryTO the data transfer object containing the details of
+     * @param courseCategory the data transfer object containing the details of
      *                         the course category to be created
      * @return the created course category as a {@link CourseCategoryTO}
      */
     @Override
-    public CourseCategoryTO createCourseCategory(CourseCategoryTO courseCategoryTO) {
-        return null;
-    }
+    public CourseCategoryTO createCourseCategory(@Valid CourseCategoryTO courseCategory) {
+        //Check if the courseCategoryDBO already exists (by name)
+        //If yes, Throw ResourceAlreadyExistsException
+        //Save to DB
 
-    /**
-     * Finds a course category by its ID.
-     *
-     * @param categoryId the ID of the course category to be found
-     * @return an {@link Optional} containing the found course category as a
-     *         {@link CourseCategoryTO}, or empty if not found
-     */
-    @Override
-    public Optional<CourseCategoryTO> findByCourseCategoryId(int categoryId) {
-        return Optional.empty();
-    }
-
-    /**
-     * Finds all course categories.
-     *
-     * @return a list of all course categories as {@link CourseCategoryTO}
-     */
-    @Override
-    public List<CourseCategoryTO> findAllCategories() {
-        return List.of();
+        CourseCategoryDBO categoryDBO = courseCategoryRepository.findCourseCategoryDBOByCategoryName(courseCategory.getCategoryName());
+        if (categoryDBO != null) {
+            throw new ResourceAlreadyExistsException(courseCategory + " already exists!");
+        }
+        categoryDBO = courseCategoryDBOMapper.toDBO(courseCategory);
+        CourseCategoryDBO savedCategoryDBO = courseCategoryRepository.save(categoryDBO);
+        return courseCategoryTOMapper.toDTO(savedCategoryDBO);
     }
 
     /**
      * Updates an existing course category.
      *
      * @param categoryId       the ID of the course category to be updated
-     * @param courseCategoryTO the data transfer object containing the updated
+     * @param courseCategory the data transfer object containing the updated
      *                         details of the course category
      * @return an {@link Optional} containing the updated course category as a
      *         {@link CourseCategoryTO}, or empty if not found
      */
     @Override
-    public Optional<CourseCategoryTO> updateCourseCategory(int categoryId, CourseCategoryTO courseCategoryTO) {
+    public Optional<CourseCategoryTO> updateCourseCategory(int categoryId, CourseCategoryTO courseCategory) {
+        //Check if the courseCategory exists => throw Not found exception
+        //Update and return the courseCategoryTO
         return Optional.empty();
     }
 
@@ -85,6 +81,8 @@ public class CourseCategoryServiceImpl implements CourseCategoryService {
      */
     @Override
     public void deleteCourseCategory(int categoryId) {
-
+        //Check if the courseCategory exists => throw Not found exception
+        //Delete the courseCategoryDBO => Check for side effects on courses, other possible side effects
     }
+
 }

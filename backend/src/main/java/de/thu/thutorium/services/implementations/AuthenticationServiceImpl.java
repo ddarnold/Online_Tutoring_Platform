@@ -89,6 +89,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      * the specified role it is saved in the database
      * @param registerRequestTO the register request transfer object containing username and password.
      * @return a ResponseEntity containing the register response transfer object with the JWT token and expiration time
+     * Todo: Revise implementation: Security issues
      */
     @Override
     @Transactional

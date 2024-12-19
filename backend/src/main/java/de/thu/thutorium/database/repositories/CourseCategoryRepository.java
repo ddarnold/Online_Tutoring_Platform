@@ -16,4 +16,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CourseCategoryRepository extends JpaRepository<CourseCategoryDBO, Long> {
+    CourseCategoryDBO findCourseCategoryDBOByCategoryName(String categoryName);
 }

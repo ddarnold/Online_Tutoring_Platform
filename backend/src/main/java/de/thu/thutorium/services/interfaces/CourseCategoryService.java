@@ -3,7 +3,6 @@ package de.thu.thutorium.services.interfaces;
 import de.thu.thutorium.api.transferObjects.common.CourseCategoryTO;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,22 +26,6 @@ public interface CourseCategoryService {
      * @return the created course category as a {@link CourseCategoryTO}
      */
     CourseCategoryTO createCourseCategory(CourseCategoryTO courseCategoryTO);
-
-    /**
-     * Finds a course category by its ID.
-     *
-     * @param categoryId the ID of the course category to be found
-     * @return an {@link Optional} containing the found course category as a
-     *         {@link CourseCategoryTO}, or empty if not found
-     */
-    Optional<CourseCategoryTO> findByCourseCategoryId(int categoryId);
-
-    /**
-     * Finds all course categories.
-     *
-     * @return a list of all course categories as {@link CourseCategoryTO}
-     */
-    List<CourseCategoryTO> findAllCategories();
 
     /**
      * Updates an existing course category.
