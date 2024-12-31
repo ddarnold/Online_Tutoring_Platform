@@ -1,7 +1,9 @@
 package de.thu.thutorium.database.repositories;
 
+import de.thu.thutorium.database.dbObjects.CourseDBO;
 import de.thu.thutorium.database.dbObjects.RoleDBO;
 import de.thu.thutorium.database.dbObjects.UserDBO;
+import org.springframework.data.domain.Limit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -44,13 +46,9 @@ public interface UserRepository extends JpaRepository<UserDBO, Long> {
 
   /**
    * Retrieves a {@link UserDBO} entity by its unique identifier.
-   *
-   * @param userId The unique identifier of the user to be retrieved.
-   * @return The {@link UserDBO} entity with the specified user ID, or {@code null} if no user is
-   *     found.
    */
-  @Query("SELECT u FROM UserDBO u WHERE u.userId = :userId")
-  UserDBO findByUserId(@Param("userId") Long userId);
+  Optional<UserDBO> findUserDBOByUserId(Long userId);
+
 
   /**
    * Retrieves a {@link UserDBO} entity with the role of "TUTOR" based on the specified user ID.
@@ -79,4 +77,6 @@ public interface UserRepository extends JpaRepository<UserDBO, Long> {
           + "(LOWER(CONCAT(u.firstName, ' ', u.lastName)) LIKE LOWER(CONCAT('%', :tutorName, '%')) OR "
           + "LOWER(CONCAT(u.lastName, ' ', u.firstName)) LIKE LOWER(CONCAT('%', :tutorName, '%')))")
   List<UserDBO> findByTutorFullName(@Param("tutorName") String tutorName);
+
+  boolean existsByUserIdAndRolesContaining(Long userId, Set<RoleDBO> roles);
 }

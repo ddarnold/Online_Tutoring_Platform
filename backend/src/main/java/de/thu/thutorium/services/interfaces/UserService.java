@@ -1,6 +1,6 @@
 package de.thu.thutorium.services.interfaces;
 
-import de.thu.thutorium.api.transferObjects.common.UserTO;
+import de.thu.thutorium.api.transferObjects.UserTO;
 
 /**
  * The {@code UserService} interface provides methods for managing and retrieving user data.
@@ -69,4 +69,11 @@ public interface UserService {
    */
   UserTO updateUser(Long id, UserTO user);
 
+  /**
+   * Enrolls a student in a course
+   *
+   * @param studentId  the id of the student
+   * @param courseId  the id of the course
+   */
+  void enrollCourse(Long studentId, Long courseId);
 }

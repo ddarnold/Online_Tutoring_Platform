@@ -1,6 +1,6 @@
 package de.thu.thutorium.api.TOMappers;
 
-import de.thu.thutorium.api.transferObjects.common.CourseTO;
+import de.thu.thutorium.api.transferObjects.CourseTO;
 import de.thu.thutorium.database.dbObjects.CourseDBO;
 import org.mapstruct.*;
 
@@ -25,8 +25,7 @@ import java.util.List;
  */
 @Mapper(
     componentModel = "spring",
-    uses = {UserTOMapper.class, CourseCategoryTOMapper.class},
-    unmappedTargetPolicy = ReportingPolicy.IGNORE)
+    uses = {UserTOMapper.class, CourseCategoryTOMapper.class})
 public interface CourseTOMapper {
 
   /**
@@ -36,7 +35,12 @@ public interface CourseTOMapper {
    * @return The mapped CourseDTO.
    */
   // Map received course ratings
-  @Mapping(target = "tutorId", source = "tutor.userId") // Map tutor ID
+  @Mappings({
+          @Mapping(target = "tutorId", source = "tutor.userId"), // Map tutor ID
+          @Mapping(target = "tutorName", source = "tutor.fullName") // Map tutor name,
+
+  })
+
   CourseTO toDTO(CourseDBO course);
 
   /**
